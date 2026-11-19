@@ -593,3 +593,37 @@
           transition: none !important;
         }
       }
+
+.floor i {
+  top: -60px;
+  will-change: transform;
+  animation: run 3s linear infinite;
+}
+@keyframes run {
+  from { transform: rotateX(70deg) translateY(0); }
+  to   { transform: rotateX(70deg) translateY(60px); }
+}
+
+/* 2. Remove the blur, it's the biggest GPU cost */
+nav, .card {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* 3. Fixed gradient on its own layer instead of background-attachment: fixed */
+body { background: var(--bg); }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(ellipse at 20% 0, var(--bg2), var(--bg) 60%);
+}
+
+/* 4. Cheaper glow on the 3D photo */
+.obj .back { filter: none; box-shadow: 0 0 40px var(--b); }
+
+/* 5. Don't animate the card shadow on hover */
+.tilt { transition: transform 0.3s; }
+.tilt:hover { box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35); }
+
