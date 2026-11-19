@@ -223,5 +223,17 @@
     </section>
 
     <footer>© Shaik Mohammed Sameer · Built with pure HTML &amp; CSS</footer>
+  <script>
+      const io = new IntersectionObserver((entries) =>
+        entries.forEach(
+          (e) =>
+            (e.target.style.animationPlayState = e.isIntersecting
+              ? "running"
+              : "paused"),
+        ),
+      );
+      document.querySelectorAll(".cube, .obj").forEach((el) => io.observe(el));
+    </script>
+  
   </body>
 </html>
